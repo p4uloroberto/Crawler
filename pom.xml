@@ -15,6 +15,7 @@
     <description>Projeto Crawler com Spring Boot, Apache Camel, Mongo, ElasticSearch</description>
 
     <modules>
+        <module>banco-rest</module>
     </modules>
 
     <dependencyManagement>

@@ -5,5 +5,6 @@ create table transacao (
      vlr_transacao DECIMAL(20, 2) not null,
      dt_transacao timestamp not null,
      is_ativo integer not null,
+     conta varchar(14) not null,
      primary key (id)
  );

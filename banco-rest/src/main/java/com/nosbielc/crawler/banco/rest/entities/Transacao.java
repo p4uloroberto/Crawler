@@ -33,15 +33,28 @@ public class Transacao implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateTimeTransferencia;
 
+    @Column(name = "conta", nullable = false)
+    private String conta;
+
     public Transacao() {
     }
 
-    public Transacao(String descricao, Boolean ativo, TipoTransacao tipoTransacao, Float valorTransacao, Date dateTimeTransferencia) {
+    public Transacao(String descricao, Boolean ativo, TipoTransacao tipoTransacao, Float valorTransacao,
+                     Date dateTimeTransferencia, String conta) {
         this.descricao = descricao;
         this.ativo = ativo;
         this.tipoTransacao = tipoTransacao;
         this.valorTransacao = valorTransacao;
         this.dateTimeTransferencia = dateTimeTransferencia;
+        this.conta = conta;
+    }
+
+    public String getConta() {
+        return conta;
+    }
+
+    public void setConta(String conta) {
+        this.conta = conta;
     }
 
     public Long getId() {
@@ -101,6 +114,7 @@ public class Transacao implements Serializable {
                 .add("tipoTransacao=" + tipoTransacao)
                 .add("valorTransacao=" + valorTransacao)
                 .add("dateTimeTransferencia=" + dateTimeTransferencia)
+                .add("conta='" + conta + "'")
                 .toString();
     }
 }

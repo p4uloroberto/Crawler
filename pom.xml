@@ -16,6 +16,7 @@
 
     <modules>
         <module>banco-rest</module>
+        <module>central-crawler</module>
     </modules>
 
     <dependencyManagement>

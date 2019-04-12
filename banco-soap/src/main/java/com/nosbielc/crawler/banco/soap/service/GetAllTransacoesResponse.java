@@ -26,7 +26,7 @@ import java.util.List;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="transacao" type="{http://spring.io/guides/gs-producing-web-service}transacao"/>
+ *         &lt;element name="transacao" type="{http://com.nosbielc.crawler/banco/soap-web-service}transacao"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

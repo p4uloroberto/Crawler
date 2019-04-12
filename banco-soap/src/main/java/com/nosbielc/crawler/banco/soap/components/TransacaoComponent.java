@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.*;
 
 @Component
@@ -29,6 +30,7 @@ public class TransacaoComponent {
                 transacao.setTipoTransacao(rd.nextInt(2));
                 transacao.setDescricao(String.format("Transação SOAP -> %s", i));
                 transacao.setValorTransacao(BigDecimal.valueOf(rd.nextInt(999999)));
+                transacao.setDateTimeTransferencia(Instant.now().toString());
 
                 transacoes.add(transacao);
             } catch (Exception e) {

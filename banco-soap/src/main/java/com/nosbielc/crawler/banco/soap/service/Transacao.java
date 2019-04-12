@@ -28,8 +28,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="descricao" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="ativo" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="tipoTransacao" type="{http://spring.io/guides/gs-producing-web-service}tipoTransacao"/>
- *         &lt;element name="valorTransacao" type="{http://spring.io/guides/gs-producing-web-service}decimalValue"/>
+ *         &lt;element name="tipoTransacao" type="{http://com.nosbielc.crawler/banco/soap-web-service}tipoTransacao"/>
+ *         &lt;element name="valorTransacao" type="{http://com.nosbielc.crawler/banco/soap-web-service}decimalValue"/>
  *         &lt;element name="dateTimeTransferencia" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="conta" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>

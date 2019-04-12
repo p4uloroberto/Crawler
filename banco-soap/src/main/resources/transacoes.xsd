@@ -1,0 +1,58 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://spring.io/guides/gs-producing-web-service"
+           targetNamespace="http://spring.io/guides/gs-producing-web-service" elementFormDefault="qualified">
+
+    <xs:element name="getTransacaoRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getTransacaoResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="transacao" type="tns:transacao"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAllTransacoesRequest">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAllTransacoesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="transacao" type="tns:transacao"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="transacao">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="descricao" type="xs:string"/>
+            <xs:element name="ativo" type="xs:int"/>
+            <xs:element name="tipoTransacao" type="tns:tipoTransacao"/>
+            <xs:element name="valorTransacao" type="tns:decimalValue"/>
+            <xs:element name="dateTimeTransferencia" type="xs:string"/>
+            <xs:element name="conta" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="tipoTransacao">
+        <xs:restriction base="xs:int">
+            <xs:enumeration value="0"/> <!--CREDITO-->
+            <xs:enumeration value="1"/> <!--DEBITO-->
+            <xs:enumeration value="2"/> <!--ACERTO-->
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="decimalValue">
+        <xs:restriction base="xs:decimal">
+            <xs:fractionDigits value="2" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

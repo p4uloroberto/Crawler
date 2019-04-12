@@ -1,0 +1,13 @@
+server:
+  port: 7081
+  servlet:
+    context-path: /bancoSoap
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+  file: bancoSoap.log
+
+spring:
+  application:
+    name: banco-rest

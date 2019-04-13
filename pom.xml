@@ -17,6 +17,7 @@
     <modules>
         <module>banco-rest</module>
         <module>banco-soap</module>
+        <module>banco-data-rest</module>
         <module>central-crawler</module>
     </modules>
 

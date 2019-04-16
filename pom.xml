@@ -19,6 +19,10 @@
         <module>banco-soap</module>
         <module>banco-data-rest</module>
         <module>central-crawler</module>
+
+<!--        Camel Examples-->
+
+        <module>camel-api-db</module>
     </modules>
 
     <dependencyManagement>

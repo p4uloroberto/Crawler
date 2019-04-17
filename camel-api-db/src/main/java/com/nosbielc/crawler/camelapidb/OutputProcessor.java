@@ -1,27 +1,36 @@
 package com.nosbielc.crawler.camelapidb;
 
-import com.nosbielc.crawler.camelapidb.model.Album;
+import com.nosbielc.crawler.camelapidb.model.TipoTransacao;
+import com.nosbielc.crawler.camelapidb.model.Transacao;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 public class OutputProcessor {
 
-    public static List<Album> returnAlbums(List<Map> dbRecords) {
-        List<Album> albums = new ArrayList<Album>();
+    public static  List<Transacao> processTransacoes(List<Map> dbRecords) {
+        List<Transacao> trans = new ArrayList<>();
 
-        // Loops over the rows returned from the database
-        // Creates a new Album object, setting the Artist and Title fields
-        // based on the column names in the database result object
-        for (Map dbRecord : dbRecords) {
-            Album album = new Album();
-            album.setArtist((String) dbRecord.get("ARTIST"));
-            album.setTitle((String) dbRecord.get("TITLE"));
+        dbRecords
+                .stream()
+                .forEach(record -> {
 
-            albums.add(album);
-        }
+                    Transacao transacao = new Transacao();
+                    transacao.setId((Long) record.get("ID"));
+                    transacao.setAtivo( ((Integer)record.get("IS_ATIVO") == 0) ? Boolean.FALSE : Boolean.TRUE );
+                    transacao.setConta((String) record.get("CONTA"));
+                    transacao.setDateTimeTransferencia((Date) record.get("dt_transacao"));
+                    transacao.setDescricao((String) record.get("DESCRICAO"));
+                    transacao.setTipoTransacao(TipoTransacao.getByValor((Integer) record.get("TIPO_TRANSACAO")) );
+                    transacao.setValorTransacao(((BigDecimal) record.get("VLR_TRANSACAO")).floatValue());
 
-        return albums;
+                    trans.add(transacao);
+                });
+
+        return trans;
     }
+
 }

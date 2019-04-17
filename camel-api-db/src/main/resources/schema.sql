@@ -1,11 +1,10 @@
--- From the Spring Boot docs:
--- "Spring Boot can automatically create the schema (DDL scripts) of your
--- DataSource and initialize it (DML scripts). It loads SQL from the
--- standard root classpath locations: schema.sql and data.sql, respectively."
-
-CREATE TABLE albums (
-    id INT,
-    artist VARCHAR(255) NOT NULL,
-    title VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id)
+create table transacao (
+   id bigint,
+   descricao varchar(255) not null,
+   tipo_transacao integer not null,
+   vlr_transacao DECIMAL(20, 2) not null,
+   dt_transacao timestamp not null,
+   is_ativo integer not null,
+   conta varchar(14) not null,
+   primary key (id)
 );

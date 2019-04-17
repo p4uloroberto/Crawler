@@ -24,6 +24,7 @@ public class Router extends RouteBuilder {
                 .description("Transação API - Fast Furious")
                 .consumes("application/json")
                 .produces("application/json")
+                .enableCORS(true)
 
                 .get("/{transacaoId}").id("getTransacao")
                 .description("Retorna uma Transação") // <2>  operação que espera uma transacaoId na URL

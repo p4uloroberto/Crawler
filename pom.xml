@@ -20,9 +20,10 @@
         <module>banco-data-rest</module>
         <module>central-crawler</module>
 
-<!--        Camel Examples-->
+        <!-- Example Camel -->
 
         <module>camel-api-db</module>
+        <module>camel-cvs-json</module>
     </modules>
 
     <dependencyManagement>

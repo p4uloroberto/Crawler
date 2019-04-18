@@ -18,12 +18,14 @@
         <module>banco-rest</module>
         <module>banco-soap</module>
         <module>banco-data-rest</module>
+        <module>banco-socket</module>
         <module>central-crawler</module>
 
         <!-- Example Camel -->
 
         <module>camel-api-db</module>
         <module>camel-cvs-json</module>
+        <module>camel-expose-soap-service</module>
     </modules>
 
     <dependencyManagement>

@@ -1,0 +1,43 @@
+#server:
+#  port: 7087
+#  servlet:
+#    context-path: /bancosocket
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+  file: bancosocket.log
+
+spring:
+  application:
+    name: banco-socket
+  datasource:
+    hikari:
+      maximum-pool-size: 25
+    url: jdbc:h2:file:./bancosocket-app;DB_CLOSE_ON_EXIT=TRUE
+    platform: h2
+    username: bancosocket
+    password: bancosocket
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+        type: trace
+        jdbc:
+          time_zone: UTC-3
+  ###
+  #   H2 Settings
+  ###
+  h2:
+    console:
+      enabled: true
+      path: /console
+      settings:
+        trace: false
+        web-allow-others: true

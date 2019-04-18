@@ -23,13 +23,14 @@ public class Router extends RouteBuilder {
             // o componente armazenará cada linha em um mapa, de modo que:
             // Header1=Value, Header2=Value, Header3=Value, etc.
             csv.setUseMaps(true);
+            //csv.setDelimiter(",");
 
             // Configurar um formato simples de saída JSON
             JsonDataFormat json =
                     new JsonDataFormat(JsonLibrary.Jackson);
 
             // Ativar a saída bem formatada para o nosso JSON
-            json.setPrettyPrint(true);
+            //json.setPrettyPrint(true);
         // end::dataFormats[]
 
         // A lógica principal de processamento de mensagens está dentro desta rota

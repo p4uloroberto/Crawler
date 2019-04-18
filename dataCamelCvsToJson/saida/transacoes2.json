@@ -1,0 +1,25 @@
+[ {
+  "ValorTransação" : "5702052",
+  "Descrição" : "DescricaoTransação43374914889",
+  "DataTransação" : "2019-04-17T15:50:24.625+0000",
+  "Ativo" : "1",
+  "TipoTransação" : "2",
+  "Id" : "1",
+  "Conta" : "42161905848816"
+}, {
+  "ValorTransação" : "6304652",
+  "Descrição" : "DescricaoTransação680209390918",
+  "DataTransação" : "2019-04-17T15:50:24.625+0000",
+  "Ativo" : "1",
+  "TipoTransação" : "0",
+  "Id" : "2",
+  "Conta" : "79167578140905"
+}, {
+  "ValorTransação" : "874209",
+  "Descrição" : "DescricaoTransação192998560961",
+  "DataTransação" : "2019-04-17T15:50:24.625+0000",
+  "Ativo" : "1",
+  "TipoTransação" : "2",
+  "Id" : "3",
+  "Conta" : "52190510337203"
+} ]

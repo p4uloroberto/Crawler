@@ -30,21 +30,16 @@ public class CamelCvsJsonApplicationTests {
 
     @Test
     public void validJson() throws Exception {
-        String expected = "{\n" +
-                "  \" Conta\" : \"1\",\n" +
-                "  \"Descrição\" : \"1\",\n" +
-                "  \" ValorTransação\" : \"2\",\n" +
-                "  \" Ativo\" : \"2019-04-17T15:50:24.625+0000\",\n" +
-                "  \" DataTransação\" : \"5702052\",\n" +
-                "  \" TipoTransação\" : \"'Descricao Transação 43374914889'\"\n" +
-                "}";
+        String expected = "[{\"ValorTransação\":\"5702052\",\"Descrição\":\"DescricaoTransação43374914889\",\"DataTransação\":\"2019-04-17T15:50:24.625+0000\",\"Ativo\":\"1\",\"TipoTransação\":\"2\",\"Id\":\"1\",\"Conta\":\"42161905848816\"},{\"ValorTransação\":\"6304652\",\"Descrição\":\"DescricaoTransação680209390918\",\"DataTransação\":\"2019-04-17T15:50:24.625+0000\",\"Ativo\":\"1\",\"TipoTransação\":\"0\",\"Id\":\"2\",\"Conta\":\"79167578140905\"},{\"ValorTransação\":\"874209\",\"Descrição\":\"DescricaoTransação192998560961\",\"DataTransação\":\"2019-04-17T15:50:24.625+0000\",\"Ativo\":\"1\",\"TipoTransação\":\"2\",\"Id\":\"3\",\"Conta\":\"52190510337203\"}]";
 
         // Esperamos que a primeira mensagem de saída seja a mesma que a string acima
         output.message(0).body().convertToString().isEqualTo(expected);
 
         // Agora enviamos uma mensagem de teste para seu endpoint direto: process
-        process.sendBody("Descrição, TipoTransação, ValorTransação, DataTransação, Ativo, Conta\n" +
-                "1,'Descricao Transação 43374914889',2,5702052,2019-04-17T15:50:24.625+0000,1,'42161905848816'");
+        process.sendBody("Id,Descrição,TipoTransação,ValorTransação,DataTransação,Ativo,Conta\n" +
+                "1,DescricaoTransação43374914889,2,5702052,2019-04-17T15:50:24.625+0000,1,42161905848816\n" +
+                "2,DescricaoTransação680209390918,0,6304652,2019-04-17T15:50:24.625+0000,1,79167578140905\n" +
+                "3,DescricaoTransação192998560961,2,874209,2019-04-17T15:50:24.625+0000,1,52190510337203");
 
         // Assert que o nosso ponto final Mock está satisfeito (que a mensagem é a esperada)
         output.assertIsSatisfied();

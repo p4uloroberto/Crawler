@@ -15,18 +15,20 @@
     <description>Projeto Crawler com Spring Boot, Apache Camel, Mongo, ElasticSearch</description>
 
     <modules>
+
         <module>banco-rest</module>
         <module>banco-soap</module>
         <module>banco-data-rest</module>
         <module>banco-socket</module>
         <module>central-crawler</module>
 
-        <!-- Example Camel -->
-
+        <!-- Exemplos do Camel -->
         <module>camel-api-db</module>
         <module>camel-cvs-json</module>
         <module>camel-expose-soap-service</module>
         <module>camel-invoke-soap-service</module>
+        <module>camel-visit-count-activemq</module>
+
     </modules>
 
     <dependencyManagement>

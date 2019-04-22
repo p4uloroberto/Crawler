@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:typ="http://com.nosbielc.crawler/TransacaoService/types"
+                  xmlns:tns="http://com.nosbielc.crawler/TransacaoService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TransacaoService"
+                  targetNamespace="http://com.nosbielc.crawler/TransacaoService/">
+    <wsdl:documentation>Definição de um serviço da Web chamado TransacaoService,
+                 que pode ser usado para adicionar ou recuperar Transações de uma coleção.
+    </wsdl:documentation>
+
+    <!--
+      The `types` element defines the data types (XML elements)
+      that are used by the web service.
+     -->
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://com.nosbielc.crawler/TransacaoService/types"
+                    xmlns:tns="http://com.nosbielc.crawler/TransacaoService/types">
+
+            <xsd:element name="Transacao" type="tns:TransacaoType"/>
+
+            <xsd:complexType name="TransacaoType">
+                <xsd:sequence>
+                    <xsd:element name="TransacaoID" type="xsd:string"/>
+                    <xsd:element name="FirstName" type="xsd:string"/>
+                    <xsd:element name="LastName" type="xsd:string"/>
+                    <xsd:element name="JobTitle" type="xsd:string"/>
+                    <xsd:element name="Country" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:element name="UpdateTransacaoRequest" type="tns:UpdateTransacaoRequestType"/>
+
+            <xsd:complexType name="UpdateTransacaoRequestType">
+                <xsd:sequence>
+                    <xsd:element ref="tns:Transacao"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:element name="UpdateTransacaoResponse" type="tns:UpdateTransacaoResponseType"/>
+
+            <xsd:complexType name="UpdateTransacaoResponseType">
+                <xsd:sequence>
+                    <xsd:element name="TransacaoID" type="xsd:string"/>
+                    <xsd:element name="Status" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:element name="GetTransacoesRequest" type="tns:GetTransacoesRequestType"/>
+
+            <xsd:complexType name="GetTransacoesRequestType"/>
+
+            <xsd:element name="GetTransacoesResponse" type="tns:GetTransacoesResponseType"/>
+
+            <xsd:complexType name="GetTransacoesResponseType">
+                <xsd:sequence>
+                    <xsd:element ref="tns:Transacao" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+        </xsd:schema>
+    </wsdl:types>
+
+
+    <!--
+      A wsdl `message` element is used to define a message
+      exchanged between a web service, consisting of zero
+      or more `part`s.
+     -->
+
+    <wsdl:message name="UpdateTransacaoRequest">
+        <wsdl:part element="typ:UpdateTransacaoRequest" name="parameters" />
+    </wsdl:message>
+    <wsdl:message name="UpdateTransacaoResponse">
+        <wsdl:part element="typ:UpdateTransacaoResponse" name="parameters" />
+    </wsdl:message>
+    <wsdl:message name="GetTransacoesRequest">
+        <wsdl:part element="typ:GetTransacoesRequest" name="parameters" />
+    </wsdl:message>
+    <wsdl:message name="GetTransacoesResponse">
+        <wsdl:part element="typ:GetTransacoesResponse" name="parameters" />
+    </wsdl:message>
+
+    <!--
+      A WSDL `portType` is used to combine multiple `message`s
+      (e.g. input, output) into a single operation.
+
+      Here we define three synchronous (input/output) operations
+      and the `message`s that must be used for each.
+     -->
+    <wsdl:portType name="Transacao">
+        <wsdl:operation name="GetTransacoes">
+            <wsdl:input message="tns:GetTransacoesRequest" />
+            <wsdl:output message="tns:GetTransacoesResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="UpdateTransacao">
+            <wsdl:input message="tns:UpdateTransacaoRequest"/>
+            <wsdl:output message="tns:UpdateTransacaoResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <!--
+      The `binding` element defines exactly how each
+      `operation` will take place over the network.
+      In this case, we are using SOAP.
+     -->
+    <wsdl:binding name="TransacaoServiceSOAP" type="tns:Transacao">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="UpdateTransacao">
+            <soap:operation soapAction="http://com.nosbielc.crawler/TransacaoService/UpdateTransacao" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTransacoes">
+            <soap:operation soapAction="http://com.nosbielc.crawler/TransacaoService/GetTransacoes" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <!--
+      The `service` element finally says where the service
+      can be accessed from - in other words, its endpoint.
+     -->
+    <wsdl:service name="TransacaoService">
+        <wsdl:port binding="tns:TransacaoServiceSOAP" name="TransacaoServiceSOAP">
+            <soap:address location="http://com.nosbielc.crawler/TransacaoService" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
+

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="84c62bc9-054d-43ae-9b29-705ef5513d5a" activeEnvironment="Default" name="Transação Service Camel" resourceRoot="" soapui-version="5.5.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="861cc2bb-e3b2-4f8c-b4fa-fc87fe7e7954" wsaVersion="NONE" name="TransacaoServiceSOAP" type="wsdl" bindingName="{http://com.nosbielc.crawler/TransacaoService/}TransacaoServiceSOAP" soapVersion="1_1" anonymous="optional" definition="http://localhost:8185/minhasTransacoes/TransacaoService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8185/minhasTransacoes/TransacaoService?wsdl"><con:part><con:url>http://localhost:8185/minhasTransacoes/TransacaoService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="TransacaoService" targetNamespace="http://com.nosbielc.crawler/TransacaoService/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:typ="http://com.nosbielc.crawler/TransacaoService/types" xmlns:tns="http://com.nosbielc.crawler/TransacaoService/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>Definição de um serviço da Web chamado TransacaoService,
+                 que pode ser usado para adicionar ou recuperar Transações de uma coleção.</wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://com.nosbielc.crawler/TransacaoService/types" xmlns:tns="http://com.nosbielc.crawler/TransacaoService/types">
+      <xsd:element name="Transacao" type="tns:TransacaoType"/>
+      <xsd:complexType name="TransacaoType">
+        <xsd:sequence>
+          <xsd:element name="TransacaoID" type="xsd:string"/>
+          <xsd:element name="FirstName" type="xsd:string"/>
+          <xsd:element name="LastName" type="xsd:string"/>
+          <xsd:element name="JobTitle" type="xsd:string"/>
+          <xsd:element name="Country" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="UpdateTransacaoRequest" type="tns:UpdateTransacaoRequestType"/>
+      <xsd:complexType name="UpdateTransacaoRequestType">
+        <xsd:sequence>
+          <xsd:element ref="tns:Transacao"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="UpdateTransacaoResponse" type="tns:UpdateTransacaoResponseType"/>
+      <xsd:complexType name="UpdateTransacaoResponseType">
+        <xsd:sequence>
+          <xsd:element name="TransacaoID" type="xsd:string"/>
+          <xsd:element name="Status" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="GetTransacoesRequest" type="tns:GetTransacoesRequestType"/>
+      <xsd:complexType name="GetTransacoesRequestType"/>
+      <xsd:element name="GetTransacoesResponse" type="tns:GetTransacoesResponseType"/>
+      <xsd:complexType name="GetTransacoesResponseType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" ref="tns:Transacao"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="UpdateTransacaoRequest">
+    <wsdl:part element="typ:UpdateTransacaoRequest" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetTransacoesRequest">
+    <wsdl:part element="typ:GetTransacoesRequest" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetTransacoesResponse">
+    <wsdl:part element="typ:GetTransacoesResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UpdateTransacaoResponse">
+    <wsdl:part element="typ:UpdateTransacaoResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Transacao">
+    <wsdl:operation name="GetTransacoes">
+      <wsdl:input message="tns:GetTransacoesRequest"></wsdl:input>
+      <wsdl:output message="tns:GetTransacoesResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTransacao">
+      <wsdl:input message="tns:UpdateTransacaoRequest"></wsdl:input>
+      <wsdl:output message="tns:UpdateTransacaoResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TransacaoServiceSOAP" type="tns:Transacao">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="UpdateTransacao">
+      <soap:operation soapAction="http://com.nosbielc.crawler/TransacaoService/UpdateTransacao"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransacoes">
+      <soap:operation soapAction="http://com.nosbielc.crawler/TransacaoService/GetTransacoes"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TransacaoService">
+    <wsdl:port binding="tns:TransacaoServiceSOAP" name="TransacaoServiceSOAP">
+      <soap:address location="http://localhost:8185/minhasTransacoes/TransacaoService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8185/minhasTransacoes/TransacaoService</con:endpoint></con:endpoints><con:operation id="9c3d7a14-189b-4df8-979c-51dba17ab200" isOneWay="false" action="http://com.nosbielc.crawler/TransacaoService/GetTransacoes" name="GetTransacoes" bindingOperationName="GetTransacoes" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d918e2f5-2153-4039-8299-d2d0a9787a28" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8185/minhasTransacoes/TransacaoService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://com.nosbielc.crawler/TransacaoService/types">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <typ:GetTransacoesRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://com.nosbielc.crawler/TransacaoService/GetTransacoes"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="927f079b-32a4-4564-b347-ea01d10823e9" isOneWay="false" action="http://com.nosbielc.crawler/TransacaoService/UpdateTransacao" name="UpdateTransacao" bindingOperationName="UpdateTransacao" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ee141d3e-f7f3-46d7-ab1b-3412e5527a39" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8185/minhasTransacoes/TransacaoService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://com.nosbielc.crawler/TransacaoService/types">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <typ:UpdateTransacaoRequest>\r
+         <typ:Transacao>\r
+            <TransacaoID>1</TransacaoID>\r
+            <FirstName>Jane</FirstName>\r
+            <LastName>Smith</LastName>\r
+            <JobTitle>Manager</JobTitle>\r
+            <Country>Recife</Country>\r
+         </typ:Transacao>\r
+      </typ:UpdateTransacaoRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://com.nosbielc.crawler/TransacaoService/UpdateTransacao"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="d3f20f05-86c6-4b14-badc-2197c2d260f9" name="TransacaoServiceSOAP TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="c9cf2c07-c900-4af0-b86d-b33cb282cb23" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetTransacoes TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="05986348-5d24-445d-8d7c-dbfb865d5a3b" name="GetTransacoes"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>TransacaoServiceSOAP</con:interface><con:operation>GetTransacoes</con:operation><con:request name="GetTransacoes" id="45940e71-3ae5-4e70-852f-f43096acd347"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8185/minhasTransacoes/TransacaoService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://com.nosbielc.crawler/TransacaoService/types">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <typ:GetTransacoesRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="http://com.nosbielc.crawler/TransacaoService/GetTransacoes"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="60ff8de1-b7b4-44b4-a9ae-73554db658f6" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="UpdateTransacao TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="5eb1374f-bf87-4c7d-9743-0fbc6ebe6e97" name="UpdateTransacao"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>TransacaoServiceSOAP</con:interface><con:operation>UpdateTransacao</con:operation><con:request name="UpdateTransacao" id="1144ac73-ee1d-450f-8042-df5beaf58f55"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8185/minhasTransacoes/TransacaoService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://com.nosbielc.crawler/TransacaoService/types">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <typ:UpdateTransacaoRequest>\r
+         <typ:Transacao>\r
+            <TransacaoID>?</TransacaoID>\r
+            <FirstName>?</FirstName>\r
+            <LastName>?</LastName>\r
+            <JobTitle>?</JobTitle>\r
+            <Country>?</Country>\r
+         </typ:Transacao>\r
+      </typ:UpdateTransacaoRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="http://com.nosbielc.crawler/TransacaoService/UpdateTransacao"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

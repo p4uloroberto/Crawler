@@ -5,37 +5,118 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.4.RELEASE</version>
+        <version>2.0.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.nosbielc.crawler</groupId>
     <artifactId>camel-visit-count-activemq</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>camel-visit-count-activemq</name>
-    <description>Camel :: Exemplo :: ActiveMQ Visit Counter</description>
+    <description>Camel :: Exemplo :: ActiveMQ Contador de Visita</description>
 
     <properties>
+        <assembly.skipAssembly>false</assembly.skipAssembly>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+
+        <spring-boot.version>2.0.4.RELEASE</spring-boot.version>
+        <camel.version>2.22.0</camel.version>
+        <hawtio.version>2.0.3</hawtio.version>
     </properties>
 
     <dependencies>
+
+        <!-- Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- Camel -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jetty-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-camel</artifactId>
+        </dependency>
+
+        <!-- Camel SQL Component -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-sql-starter</artifactId>
+        </dependency>
+
+        <!-- Use an in-memory database for the demo -->
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.4.1</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Test classes -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-test-spring</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- DevTools Runtime -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring Boot BOM -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.0.4.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Camel BOM -->
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-spring-boot-dependencies</artifactId>
+                <version>2.22.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>io.hawt</groupId>
+                <artifactId>hawtio-maven-plugin</artifactId>
+                <version>2.0.3</version>
+                <configuration>
+                    <mainClass>com.nosbielc.crawler.camelvisitcountactivemq.CamelVisitCountActivemqApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -14,58 +14,58 @@ public class Router extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        // Pick up a specific file (workers.csv) from our test data folder.
-        // Setting "noop=true" means that Camel will do nothing to the file
-        // once it's finished processing it.
+
+        // Pegue um arquivo específico (transacoes.csv) da nossa pasta de dados para teste.
+        // Definir "noop=true" significa que Camel não fará nada para o arquivo
+        // quando terminar de processá-lo.
         from("file:{{source.directory}}?fileName=transacoes.csv")
                 .id("CapturaArquivoRouter::Internal")
-                .description("Router resposanvel por buscar arquivos para processamento")
+                .description("Router responsavel por buscar arquivos para processamento")
                 .log("Arquivo Recebido -> ${body}")
                 .to("direct:process");
 
-        // Encapsulate all our logic behind a Direct endpoint
+        // Encapsular toda a nossa lógica por trás de um endpoint direct
         from("direct:process")
                 .id("InvokeSoapserviceRouter::Internal")
                 .description("Router que realiza integração com SOAP Service")
                 // Unmarshal the CSV into a Java object (a List)
                 .unmarshal().csv()
 
-                // Split the List and process each row
+                // Divida a lista e processe cada linha
                 .split()
-                // This tells the Camel that it should use the most
-                // natural method to split the body (i.e. by List elements)
+                // Isso diz ao Camel que ele deve usar o mais
+                // método natural para dividir o corpo (ou seja, por elementos da lista)
                 .body()
 
-                // Tell Camel which SOAP operation we want to invoke.
-                // This is set in our application.properties file
+                // Diga ao Camel qual operação SOAP queremos invocar.
+                // Isso está definido no nosso arquivo application.properties
                 .setHeader(CxfConstants.OPERATION_NAME,
                         simple("{{webservice.operation}}"))
 
-                // Build our request payload, by creating a new object
-                // of type UpdateWorkerRequestType, and then setting it in
-                // the message body
+                // Construa nossa carga útil de solicitação, criando um novo objeto
+                // do tipo UpdateTransacaoRequestType e, em seguida, defini-lo em
+                // o corpo da mensagem
                 .process(transacaoRequestProcessor)
 
-                .log("About to invoke SOAP service for transacao: "
+                .log("Prestes a invocar o serviço SOAP para transacao: "
                         + "FirstName = ${body.transacao.firstName}, "
                         + "LastName = ${body.transacao.lastName}")
 
-                // Invoke the SOAP service, using the message body as the
-                // request object
-                // For the serviceClass option, we specify the interface
-                // that was generated for us by cxf-codegen:wsdl2java
+                // Invoque o serviço SOAP, usando o corpo da mensagem como
+                // objeto de solicitação
+                // Para a opção serviceClass, especificamos a interface
+                // que foi gerado para nós por cxf-codegen:wsdl2java
                 .to("cxf://{{webservice.address}}"
                         + "?serviceClass=crawler.nosbielc.com.transacaoservice.Transacao"
                         + "&wsdlURL=/wsdl/transacaoservice.wsdl")
 
-                // After invoking the SOAP service, Camel puts the response
-                // into the Exchange body, as an object of type
+                // Após invocar o serviço SOAP, o Camel coloca a resposta no
+                // corpo do Exchange, como um objeto do tipo
                 // org.apache.cxf.message.MessageContentsList.
-                // The SOAP response object is the first item in this list.
+                // O objeto de resposta SOAP é o primeiro item dessa lista.
 
-                // We can use Camel's Simple language to get elements
-                // from the response.
-                .log("SOAP service returned status = ${body[0].status}")
+                // Podemos usar a linguagem simples do Camel para obter elementos da resposta.
+                .log("Serviço SOAP retornou status = ${body[0].status}")
                 .end();
     }
 }

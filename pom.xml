@@ -28,6 +28,7 @@
         <module>camel-expose-soap-service</module>
         <module>camel-invoke-soap-service</module>
         <module>camel-visit-count-activemq</module>
+        <module>camel-consumer-rest-service</module>
 
     </modules>
 

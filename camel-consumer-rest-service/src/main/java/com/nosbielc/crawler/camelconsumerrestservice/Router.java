@@ -8,10 +8,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Type;
-import java.util.Arrays;
-import java.util.List;
-
 @Component
 public class Router extends RouteBuilder {
 

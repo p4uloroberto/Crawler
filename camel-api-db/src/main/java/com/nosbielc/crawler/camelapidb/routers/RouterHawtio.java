@@ -1,4 +1,4 @@
-package com.nosbielc.crawler.camelapidb;
+package com.nosbielc.crawler.camelapidb.routers;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;

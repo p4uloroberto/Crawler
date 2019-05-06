@@ -1,4 +1,4 @@
-package com.nosbielc.crawler.camelapidb;
+package com.nosbielc.crawler.camelapidb.processor;
 
 import com.nosbielc.crawler.camelapidb.model.TipoTransacao;
 import com.nosbielc.crawler.camelapidb.model.Transacao;

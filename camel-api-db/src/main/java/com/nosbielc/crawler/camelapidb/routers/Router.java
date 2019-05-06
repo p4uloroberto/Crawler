@@ -1,15 +1,32 @@
-package com.nosbielc.crawler.camelapidb;
+package com.nosbielc.crawler.camelapidb.routers;
 
+import com.nosbielc.crawler.camelapidb.exception.ExceptionProcessor;
 import com.nosbielc.crawler.camelapidb.model.Transacao;
+import com.nosbielc.crawler.camelapidb.processor.OutputProcessor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Router extends RouteBuilder {
 
+    @Autowired
+    ExceptionProcessor exceptionProcessor;
+
     @Override
     public void configure() {
+
+        // tag::handleException[]
+        onException(Exception.class) // <1> Exceptions que desejamos capturar
+                .redeliveryDelay(5) // <2> Define o atraso inicial de nova entrega
+                .maximumRedeliveries(5) // <3> Define o máximo de redeliveries
+                .log("exceção ao inserir mensagens.") // <4> Cria uma mensagem de log para ser registrada no nível INFO.
+                .process(exceptionProcessor) // <5> Adiciona o processador personalizado a esse destino, que pode ser
+                // um destino final ou pode ser uma transformação em um pipeline
+                .handled(true); // <6> Define se a troca deve ser marcada como manipulada ou não.
+        // end::handleException[]
 
         // tag::rest[]
         restConfiguration() // <1> Iniciar um bloco de configuração REST
